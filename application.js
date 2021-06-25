@@ -3,8 +3,8 @@ var express = require("express"),
     app = express(),
     methodOverride = require("method-override");
 
-const port = 3000;
-const host = "localhost";
+const PORT = process.env.PORT || 5000
+//const host = "localhost";
 const logger = require('./utils/logger');
 const swaggerUi = require("swagger-ui-express"),
       swaggerDocument = require("./swagger.json");
@@ -28,7 +28,7 @@ app.use((req,res,next) => {
   logger.error(`400 || ${res.statusMessage} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
 });
 
-app.listen(port, () => {
+app.listen(PORT, () => {
   console.log("Server started...");
-  logger.info(`Server started and running on http://${host}:${port}`)
+  logger.info(`Listening on ${ PORT }`)
 })
